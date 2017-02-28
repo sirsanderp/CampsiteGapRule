@@ -20,8 +20,16 @@ public class SearchDatabase {
         campsites.putIfAbsent(id, name);
     }
 
+    public void removeCampsite(long id) {
+        campsites.remove(id);
+    }
+
     public String getCampsite(long id) {
         return campsites.get(id);
+    }
+
+    public HashMap<Long, String> getCampsites() {
+        return campsites;
     }
 
     // Assume input is for one calendar month, otherwise have to make an array for 365 days or use a real database...
@@ -36,13 +44,11 @@ public class SearchDatabase {
         for (int day = startDay; day <= endDay; day++) {
             month[day] = true;
         }
-
         reservations.put(id, month);
     }
 
-    public HashMap<Long, boolean[]> getReservation() {
-        return reservations;
-    }
+//    public void removeReservation() {
+//    }
 
     public boolean isReserved(long id, int day) {
         return reservations.get(id)[day];
@@ -52,17 +58,13 @@ public class SearchDatabase {
         gapRules.add(gap);
     }
 
-    public boolean removeGapRule(int gap) {
-        return gapRules.remove(gap) > 0;
+    public void removeGapRule(int gap) {
+        gapRules.remove(gapRules.indexOf(gap));
     }
 
     public int getMaxGapRule() {
         Collections.sort(gapRules);
         return gapRules.get(gapRules.size() - 1);
-    }
-
-    public ArrayList<Integer> getGapRules() {
-        return gapRules;
     }
 
     public boolean isGapRule(int gap) {

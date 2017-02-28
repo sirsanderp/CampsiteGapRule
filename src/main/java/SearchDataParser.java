@@ -35,6 +35,7 @@ public class SearchDataParser {
         Iterator<JsonNode> iterator = campsites.elements();
         while (iterator.hasNext()) {
             JsonNode campsite = iterator.next();
+
             long id = campsite.path("id").asLong();
             String name = campsite.path("name").asText();
 //            LOGGER.log(Level.INFO, id + " " + name);
@@ -42,16 +43,18 @@ public class SearchDataParser {
             db.addCampsite(id, name);
         }
 
-        JsonNode reservations = rootNode.path("reservations");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
+        JsonNode reservations = rootNode.path("reservations");
         iterator = reservations.elements();
         while (iterator.hasNext()) {
             JsonNode reservation = iterator.next();
+
             long id = reservation.path("campsiteId").asLong();
 //            System.out.println(reservation.path("startDate").asText() + " - " + reservation.path("endDate").asText());
             Date startDate = format.parse(reservation.path("startDate").asText());
             Date endDate = format.parse(reservation.path("endDate").asText());
+
             calendar.setTime(startDate);
             int startDay = calendar.get(Calendar.DAY_OF_MONTH);
             calendar.setTime(endDate);
@@ -64,6 +67,7 @@ public class SearchDataParser {
         iterator = gapRules.elements();
         while (iterator.hasNext()) {
             JsonNode gapRule = iterator.next();
+
             int gapSize = gapRule.path("gapSize").asInt();
 //            System.out.println(gapSize);
             db.addGapRule(gapSize);
@@ -72,11 +76,13 @@ public class SearchDataParser {
     }
 
     public SearchQuery buildSearchQuery() throws ParseException {
-        JsonNode search = rootNode.path("search");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
+
+        JsonNode search = rootNode.path("search");
         Date startDate = format.parse(search.path("startDate").asText());
         Date endDate = format.parse(search.path("endDate").asText());
+
         calendar.setTime(startDate);
         int startDay = calendar.get(Calendar.DAY_OF_MONTH);
         calendar.setTime(endDate);

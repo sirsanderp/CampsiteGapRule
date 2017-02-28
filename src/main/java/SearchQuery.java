@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -8,18 +9,21 @@ public class SearchQuery {
     private int endDay;
 
     public SearchQuery(int startDay, int endDay) {
-        if (startDay > endDay) System.out.println("Invalid days");
+        if (startDay < 1 || endDay > 31 || startDay > endDay) {
+            System.out.println("Invalid days");
+            return;
+        }
         this.startDay = startDay;
         this.endDay = endDay;
     }
 
-    public void findAvailableCampsites(SearchDatabase database) {
-        HashMap<Long, boolean[]> reservations = database.getReservation();
-        for (long id : reservations.keySet()) {
-            boolean[] month = reservations.get(id);
+    public ArrayList<String> findAvailableCampsites(SearchDatabase database) {
+        ArrayList<String> availableCampsites = new ArrayList<>();
+        HashMap<Long, String> campsites = database.getCampsites();
+        for (long id : campsites.keySet()) {
             boolean overlap = false;
             for (int day = startDay; day <= endDay; day++) {
-                if (month[day]) {
+                if (database.isReserved(id, day)) {
                     overlap = true;
                     break;
                 }
@@ -29,7 +33,8 @@ public class SearchQuery {
             int maxGap = database.getMaxGapRule();
             int beforeGap = 0;
             while (beforeGap <= maxGap + 1) {
-                if (!month[startDay - 1 - beforeGap]) {
+                int day = startDay - 1 - beforeGap;
+                if (day >= 1 && !database.isReserved(id, day)) {
                     beforeGap++;
                 } else {
                     break;
@@ -39,7 +44,8 @@ public class SearchQuery {
 
             int afterGap = 0;
             while (afterGap <= maxGap + 1) {
-                if (!month[endDay + 1 + afterGap]) {
+                int day = endDay + 1 + afterGap;
+                if (day <= 31 && !database.isReserved(id, day)) {
                     afterGap++;
                 } else {
                     break;
@@ -47,12 +53,16 @@ public class SearchQuery {
             }
             if (database.isGapRule(afterGap)) continue;
 
-            System.out.println(database.getCampsite(id));
+            availableCampsites.add(database.getCampsite(id));
         }
+        return availableCampsites;
     }
 
     public void updateQuery(int startDay, int endDay) {
-        if (startDay > endDay) System.out.println("Invalid days");
+        if (startDay < 1 || endDay > 31 || startDay > endDay) {
+            System.out.println("Invalid days");
+            return;
+        }
         this.startDay = startDay;
         this.endDay = endDay;
     }
