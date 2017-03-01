@@ -1,19 +1,33 @@
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
- * Created by Sander Peerna on 2/24/2017.
+ * Class to find the available campsites.
+ *
+ * @author  Sander Peerna
+ * @version 0.1
+ * @since   2/24/2017
  */
 public class AvailableCampsites {
+
+    /**
+     * Builds all the objects required to find available campsites based on the JSON input.
+     * @param args the location of the JSON file
+     */
     public static void main (String[] args) {
-        SearchDataParser parser;
-        if (args.length == 0) parser = new SearchDataParser(new File("src/main/resources/test-case.json"));
-        else parser = new SearchDataParser(new File(args[0]));
+        CampsiteDataParser parser = null;
+        try {
+            if (args.length == 0) parser = new CampsiteDataParser(new File("src/main/resources/test-case.json"));
+            else parser = new CampsiteDataParser(new File(args[0]));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
-            SearchDatabase database = parser.buildSearchDatabase();
-            SearchQuery query = parser.buildSearchQuery();
+            CampsiteDatabase database = parser.buildSearchDatabase();
+            CampsiteQuery query = parser.buildSearchQuery();
             ArrayList<String> result = query.findAvailableCampsites(database);
 
             for (String campsite : result) {

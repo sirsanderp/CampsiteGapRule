@@ -7,20 +7,20 @@ import java.util.*;
  * @version 0.1
  * @since   2/24/2017
  */
-public class SearchDatabase {
+public class CampsiteDatabase {
     private static final int DAYS_IN_YEAR = 366;
 
     private HashMap<Long, String> campsites;        // Assume id's are not 1 -> # of campsites, could be 43299292, ..., 50230203, ...
     private HashMap<Long, boolean[]> reservations;
-    private ArrayList<Integer> gapRules;            // Assume there are only a few rules
+    private TreeSet<Integer> gapRules;
 
     /**
      * Class constructor.
      */
-    public SearchDatabase() {
+    public CampsiteDatabase() {
         campsites = new HashMap<>();
         reservations = new HashMap<>();
-        gapRules = new ArrayList<>();
+        gapRules = new TreeSet<>();
     }
 
     /**
@@ -99,7 +99,7 @@ public class SearchDatabase {
      * @param gap   the size of the gap
      */
     public void removeGapRule(int gap) {
-        gapRules.remove(gapRules.indexOf(gap));
+        gapRules.remove(gap);
     }
 
     /**
@@ -107,8 +107,7 @@ public class SearchDatabase {
      * @return  the size of the largest gap
      */
     public int getMaxGapRule() {
-        Collections.sort(gapRules);
-        return gapRules.get(gapRules.size() - 1);
+        return gapRules.last();
     }
 
     /**
