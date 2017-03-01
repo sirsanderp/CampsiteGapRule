@@ -1,0 +1,70 @@
+{
+  "search": {
+    "startDate": "2016-05-29",
+    "endDate": "2016-06-01"
+  },
+  "campsites": [
+    {
+      "id": 345246,
+      "name": "Grizzly Adams Adventure Cabin"
+    },
+    {
+      "id": 496249,
+      "name": "Lewis and Clark Camp Spot"
+    },
+    {
+      "id": 1269,
+      "name": "Jonny Appleseed Log Cabin"
+    },
+    {
+      "id": 365366,
+      "name": "Davey Crockett Camphouse"
+    },
+    {
+      "id": 93,
+      "name": "Daniel Boone Bungalow"
+    },
+    {
+      "id": 6,
+      "name": "Teddy Rosevelt Tent Site"
+    },
+    {
+      "id": 24529,
+      "name": "Edmund Hillary Igloo"
+    },
+    {
+      "id": 81,
+      "name": "Bear Grylls Cozy Cave"
+    },
+    {
+      "id": 1,
+      "name": "Wyatt Earp Corral"
+    }
+  ],
+  "gapRules": [
+    {
+      "gapSize": 2
+    }
+  ],
+  "reservations": [
+    {"campsiteId": 345246, "startDate": "2016-06-01", "endDate": "2016-06-04"},
+    {"campsiteId": 345246, "startDate": "2016-06-11", "endDate": "2016-06-13"},
+    {"campsiteId": 496249, "startDate": "2016-06-08", "endDate": "2016-06-09"},
+    {"campsiteId": 1269, "startDate": "2016-06-04", "endDate": "2016-06-06"},
+    {"campsiteId": 1269, "startDate": "2016-06-14", "endDate": "2016-06-16"},
+    {"campsiteId": 365366, "startDate": "2016-06-03", "endDate": "2016-06-05"},
+    {"campsiteId": 365366, "startDate": "2016-06-13", "endDate": "2016-06-14"},
+    {"campsiteId": 93, "startDate": "2016-06-03", "endDate": "2016-06-06"},
+    {"campsiteId": 93, "startDate": "2016-06-12", "endDate": "2016-06-14"},
+    {"campsiteId": 6, "startDate": "2016-06-04", "endDate": "2016-06-06"},
+    {"campsiteId": 6, "startDate": "2016-06-11", "endDate": "2016-06-12"},
+    {"campsiteId": 6, "startDate": "2016-06-16", "endDate": "2016-06-16"},
+    {"campsiteId": 24529, "startDate": "2016-06-03", "endDate": "2016-06-04"},
+    {"campsiteId": 24529, "startDate": "2016-06-07", "endDate": "2016-06-09"},
+    {"campsiteId": 24529, "startDate": "2016-06-13", "endDate": "2016-06-16"},
+    {"campsiteId": 81, "startDate": "2016-06-01", "endDate": "2016-06-02"},
+    {"campsiteId": 81, "startDate": "2016-06-05", "endDate": "2016-06-06"},
+    {"campsiteId": 1, "startDate": "2016-06-03", "endDate": "2016-06-05"},
+    {"campsiteId": 1, "startDate": "2016-06-12", "endDate": "2016-06-16"}
+  ]
+}
