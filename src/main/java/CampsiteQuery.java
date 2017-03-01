@@ -8,11 +8,7 @@ public class SearchQuery {
     private int startDay;
     private int endDay;
 
-    public SearchQuery(int startDay, int endDay) {
-        if (startDay < 1 || endDay > 31 || startDay > endDay) {
-            System.out.println("Invalid days");
-            return;
-        }
+    public SearchQuery(int startDay, int endDay) { // Assumes dates are checked by the front-end that provides the JSON.
         this.startDay = startDay;
         this.endDay = endDay;
     }
@@ -45,7 +41,7 @@ public class SearchQuery {
             int afterGap = 0;
             while (afterGap <= maxGap + 1) {
                 int day = endDay + 1 + afterGap;
-                if (day <= 31 && !database.isReserved(id, day)) {
+                if (day <= 366 && !database.isReserved(id, day)) {
                     afterGap++;
                 } else {
                     break;
@@ -59,10 +55,6 @@ public class SearchQuery {
     }
 
     public void updateQuery(int startDay, int endDay) {
-        if (startDay < 1 || endDay > 31 || startDay > endDay) {
-            System.out.println("Invalid days");
-            return;
-        }
         this.startDay = startDay;
         this.endDay = endDay;
     }
