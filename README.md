@@ -20,7 +20,7 @@
     <li>Change the JSON input file by changing the pathname in the code.
     </ol>
   <li>In the terminal:
-    <ol><li><code>java -jar ${PROJECT_PATH}/out/artifact/campsitegaprule_jar/campsitegaprule.jar ${JSON_FILE_PATH}</code></ol>
+    <ol><li><code>java -jar ${PROJECT_PATH}/out/artifacts/campsitesgaprule_jar/campsitesgaprule.jar ${JSON_FILE_PATH}</code></ol>
   </ol>
 <li>Run the tests.
   <ol>
